@@ -22,19 +22,31 @@ fun todoTask39(): Nothing = TODO(
 fun renderProductTable(): String {
     return html {
         table {
-            tr {
-                td {
+            tr(getTitleColor()) {
+                td(getCellColor(0, 0)) {
                     text("Product")
                 }
-                td {
+                td(getCellColor(0,1)) {
                     text("Price")
                 }
-                td {
+                td(getCellColor(0,2)) {
                     text("Popularity")
                 }
             }
             val products = getProducts()
-            todoTask39()
+            products.mapIndexed { idx,product ->
+              tr {
+                td(getCellColor(idx, 0)) {
+                  text(product.description)
+                }
+                td(getCellColor(idx, 1)) {
+                  text(product.price)
+                }
+                td(getCellColor(idx, 2)) {
+                  text(product.popularity)
+                }
+              }
+            }
         }
     }.toString()
 }
